@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.rk.gifstore.entity.GiffEntity;
 import com.rk.gifstore.request.BuyGiffRequest;
-import com.rk.gifstore.request.UploadGiffRequest;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -41,7 +40,7 @@ public interface GiffApi {
 			@ApiResponse(code = 500, message = "Something bad occured, please contact administrator")
 	})
 	@PostMapping("/sell-new")
-	HttpStatus uploadGiff(@RequestParam("giff") MultipartFile file, @RequestBody UploadGiffRequest request) throws IOException;
+	HttpStatus uploadGiff(@RequestParam("giff") MultipartFile file, @RequestParam("userId")long userId, @RequestParam("price")long price) throws IOException;
 	
 	@ApiOperation(value = "Registers a message for a user and make request to send notification", nickname = "sendNotification", response = HttpStatus.class, tags = {"Giff"})
 	@ApiResponses(value = {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.rk.gifstore.exception.GiffStoreBadRequestException;
 import com.rk.gifstore.exception.GiffStoreError;
 import com.rk.gifstore.exception.GiffStoreForbiddenException;
+import com.rk.gifstore.exception.GiffStoreNoDataFoundException;
 
 @ControllerAdvice
 public class GiffStoreControllerAdvice {
@@ -24,6 +25,13 @@ public class GiffStoreControllerAdvice {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public GiffStoreError handleBadRequestException(GiffStoreBadRequestException ex) {
+		return createResponseErrorMessage(ex.getMessage());
+	}
+	
+	@ExceptionHandler(GiffStoreNoDataFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	@ResponseBody
+	public GiffStoreError handleNoDataRequestException(GiffStoreNoDataFoundException ex) {
 		return createResponseErrorMessage(ex.getMessage());
 	}
 	

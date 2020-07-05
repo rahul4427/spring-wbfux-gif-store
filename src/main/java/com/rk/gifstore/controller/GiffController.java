@@ -17,7 +17,6 @@ import com.rk.gifstore.entity.GiffEntity;
 import com.rk.gifstore.entity.GiffPurchaseEntity;
 import com.rk.gifstore.exception.GiffStoreBadRequestException;
 import com.rk.gifstore.request.BuyGiffRequest;
-import com.rk.gifstore.request.UploadGiffRequest;
 import com.rk.gifstore.service.GiffService;
 
 import io.swagger.annotations.Api;
@@ -37,11 +36,12 @@ public class GiffController implements GiffApi{
 	}
 
 	@Override
-	public HttpStatus uploadGiff(MultipartFile file, UploadGiffRequest request) throws IOException {
-		if(!file.getContentType().equalsIgnoreCase(".gif")) {
+	public HttpStatus uploadGiff(MultipartFile file, long userId, long price) throws IOException {
+		System.out.println(file.getOriginalFilename());
+		if(!file.getOriginalFilename().endsWith(".gif")) {
 			throw new GiffStoreBadRequestException("Please enter a valid gif");
 		}
-		Mono<GiffEntity> result = giffService.uploadGiff(file.getBytes(), request);
+		Mono<GiffEntity> result = giffService.uploadGiff(file.getBytes(), userId, price);
 		result.block();
 		return HttpStatus.OK;
 	}
