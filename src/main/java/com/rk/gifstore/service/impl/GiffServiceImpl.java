@@ -42,10 +42,11 @@ public class GiffServiceImpl implements GiffService {
 	@Override
 	public Mono<GiffEntity> downloadGiff(long userId, long giffId) {
 		Mono<GiffPurchaseEntity> giffPrchsEntity = giffPurchaseRepository.findByUserIdAndGiffId(userId, giffId);
-		if (giffPrchsEntity.block() == null) {
+		Mono<GiffEntity> result = giffRepository.findById(giffId);
+		if (giffPrchsEntity.block() == null && result.block().getOwnerId()!=userId) {
 			throw new GiffStoreForbiddenException("You don't have ownership of this GIF");
 		}
-		return giffRepository.findById(giffId);
+		return result;
 	}
 
 }
