@@ -24,36 +24,36 @@ import reactor.core.publisher.Flux;
 @RequestMapping("/giff")
 public interface GiffApi {
 	
-	@ApiOperation(value = "Registers a message for a user and make request to send notification", nickname = "sendNotification", response = Flux.class, tags = {"Giff"})
+	@ApiOperation(value = "Return all the Gif details", nickname = "getAllGiffs", response = Flux.class, tags = {"Giff"})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Receive msg for a user and send notification"),
+			@ApiResponse(code = 200, message = "Receive all giff details"),
 			@ApiResponse(code = 400, message = "Bad Request detected"),
 			@ApiResponse(code = 500, message = "Something bad occured, please contact administrator")
 	})
 	@GetMapping("/all")
 	Flux<GiffEntity> getGiffs();
 	
-	@ApiOperation(value = "Registers a message for a user and make request to send notification", nickname = "sendNotification", response = HttpStatus.class, tags = {"Giff"})
+	@ApiOperation(value = "Registers a giff to be sold on the application", nickname = "uploadGiff", response = HttpStatus.class, tags = {"Giff"})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Receive msg for a user and send notification"),
+			@ApiResponse(code = 200, message = "Giff uploaded successfully"),
 			@ApiResponse(code = 400, message = "Bad Request detected"),
 			@ApiResponse(code = 500, message = "Something bad occured, please contact administrator")
 	})
 	@PostMapping("/sell-new")
 	HttpStatus uploadGiff(@RequestParam("giff") MultipartFile file, @RequestParam("userId")long userId, @RequestParam("price")long price) throws IOException;
 	
-	@ApiOperation(value = "Registers a message for a user and make request to send notification", nickname = "sendNotification", response = HttpStatus.class, tags = {"Giff"})
+	@ApiOperation(value = "User can buy a Giff", nickname = "buyGiff", response = HttpStatus.class, tags = {"Giff"})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Receive msg for a user and send notification"),
+			@ApiResponse(code = 200, message = "Giff bought successfully"),
 			@ApiResponse(code = 400, message = "Bad Request detected"),
 			@ApiResponse(code = 500, message = "Something bad occured, please contact administrator")
 	})
 	@PostMapping("/buy")
 	HttpStatus buyGiff(@RequestBody BuyGiffRequest request);
 	
-	@ApiOperation(value = "Registers a message for a user and make request to send notification", nickname = "sendNotification", response = HttpStatus.class, tags = {"Giff"})
+	@ApiOperation(value = "buyers and owners can download the giff", nickname = "downloadGiff", response = HttpStatus.class, tags = {"Giff"})
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Receive msg for a user and send notification"),
+			@ApiResponse(code = 200, message = "Giff downloaded successfully"),
 			@ApiResponse(code = 400, message = "Bad Request detected"),
 			@ApiResponse(code = 500, message = "Something bad occured, please contact administrator")
 	})

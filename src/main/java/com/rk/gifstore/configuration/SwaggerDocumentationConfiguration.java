@@ -19,7 +19,7 @@ public class SwaggerDocumentationConfiguration {
 
 	@Bean
 	ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title("User's notification").build();
+		return new ApiInfoBuilder().title("Giff Store").build();
 	}
 	
 	@Bean
