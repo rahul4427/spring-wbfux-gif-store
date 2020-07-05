@@ -95,6 +95,5 @@ Once the request is sent, your Giff will be downloaded.
 * [Spring Web-Flux](https://docs.spring.io/spring-framework/docs/5.0.0.BUILD-SNAPSHOT/spring-framework-reference/html/web-reactive.html)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Swagger](https://swagger.io/about/)
-* [HTML, CSS, JS](https://www.w3schools.com/html/html_scripts.asp)
 * [Heroku](https://www.heroku.com/)
 
